@@ -11,11 +11,13 @@ You will need to deploy by using Fitbit Studio and replace Sesame token and Devi
 
 ## How to replace your Sesame auth token and a device ID
 1. Create Sesame auth token, please see [this page](https://docs.candyhouse.co/#authentication).
+2. Enable cloud integration for your Sesame Application on smartphone.  
+   [Status] > [Change Settings] > [Integration], please see [this page](https://docs.candyhouse.co/#before-you-start). 
 2. Get a sesame device ID using "Get sesame list" API, please see [API spec](https://docs.candyhouse.co/#get-sesame-list).
 3. Open `src/companion/sesame.js`
 4. Replace following parameters: 
-  * `{YOUR-SESAME-AUTH-TOKEN}`: Sesame auth token
-  * `{YOUR-SESAME-DEVICE-ID}`: Sesame auth token
+   * `{YOUR-SESAME-AUTH-TOKEN}`: Sesame auth token
+   * `{YOUR-SESAME-DEVICE-ID}`: Sesame device ID
 
 ## Hot to deploy
 Please see [Fitbit Developer - Getting Started](https://dev.fitbit.com/getting-started/)
