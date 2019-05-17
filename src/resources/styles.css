@@ -1,0 +1,20 @@
+.background {
+  viewport-fill: fb-black;
+}
+
+#status-image {
+  x: 90;
+  y: 100;
+  width: 125;
+  height: 125;
+}
+
+#status-text {
+  fill: white;
+  x: 50%;
+  y: 80;
+  font-size: 20;
+  font-family: SevilleSharp-Regular;
+  text-anchor: middle;
+  text-length: 99;
+}

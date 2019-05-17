@@ -1,0 +1,25 @@
+{
+  "fitbit": {
+    "appUUID": "de85a98f-bf46-480a-9a51-c876d94fdbad",
+    "appType": "app",
+    "appDisplayName": "sesame-app",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#8bc34a",
+    "requestedPermissions": [
+      "access_internet"
+    ],
+    "buildTargets": [
+      "meson",
+      "gemini"
+    ],
+    "i18n": {
+      "en": {
+        "name": "sesame-app"
+      }
+    },
+    "defaultLanguage": "en-US"
+  },
+  "devDependencies": {
+    "@fitbit/sdk": "~3.1.0"
+  }
+}
