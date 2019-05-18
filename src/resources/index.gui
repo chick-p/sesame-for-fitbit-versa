@@ -4,12 +4,12 @@
     <set href="combo-button-icon-press" attributeName="href" to="images/btn-check.png"/>
     <set href="combo-button-stroke" attributeName="display" to="inline"/>
   </use>
-  <use id="btn-unlock" href="#combo-button-lower-right" fill="fb-cyan">
+  <use id="btn-unlock" href="#combo-button-lower-left" fill="fb-pink">
     <set href="combo-button-icon" attributeName="href" to="images/btn-unlock.png"/>
     <set href="combo-button-icon-press" attributeName="href" to="images/btn-unlock-press.png"/>
     <set href="combo-button-stroke" attributeName="display" to="inline"/>
   </use>
-  <use id="btn-lock" href="#combo-button-lower-left" fill="fb-pink">
+  <use id="btn-lock" href="#combo-button-lower-right" fill="fb-cyan">
     <set href="combo-button-icon" attributeName="href" to="images/btn-lock.png"/>
     <set href="combo-button-icon-press" attributeName="href" to="images/btn-lock-press.png"/>
     <set href="combo-button-stroke" attributeName="display" to="inline"/>
