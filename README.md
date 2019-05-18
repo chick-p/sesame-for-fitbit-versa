@@ -3,7 +3,7 @@ sesame-app is an application for fitbit versa that to lock and unlock your door 
 Please open Fitbit Application on iPhone, set this app configuration.
 
 ## Fitbit Versa screenshots
-![](images/versa-locked.png) ![](images/versa-unlocking.png) ![](images/versa-unlocked.png) 
+![](images/versa-prepare.png) ![](images/versa-locked.png) ![](images/versa-unlocking.png) ![](images/versa-unlocked.png) 
 
 ## Usage
 This app is not published to the app store.
