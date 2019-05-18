@@ -9,23 +9,41 @@ const btnCheck = document.getElementById('btn-check');
 
 btnCheck.onactivate = function(evt) {
   statusText.text = 'Checking...';
+  enabledAllButton(false);
   messaging.peerSocket.send({command: 'status'});
 };
 
 btnUnlock.onactivate = function(evt) {
   statusText.text = 'Unlocking...';
+  enabledAllButton(false);
   messaging.peerSocket.send({command: 'unlock'});
 };
 
 btnLock.onactivate = function(evt) {
   statusText.text = 'Locking...';
+  enabledAllButton(false);
   messaging.peerSocket.send({command: 'lock'});
+};
+
+const enabledAllButton = function(isEnabled) {
+  if (isEnabled) {
+    btnCheck.enable();
+    btnLock.enable();
+    btnUnlock.enable();
+  } else {
+    btnCheck.disable();
+    btnLock.disable();
+    btnUnlock.disable();
+  }
 };
 
 // Request number of today's task from the companion
 const fetchStatus = function() {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
-    messaging.peerSocket.send({command: 'status'});
+    messaging.peerSocket.send({command: 'prepare'});
+    statusText.text = 'Preparing...';
+    statusImg.image = 'images/status-prepare.png';
+    enabledAllButton(false);
   }
 };
 
@@ -40,9 +58,11 @@ messaging.peerSocket.onmessage = evt => {
   } else if (evt.data['locked']) {
     statusText.text = 'Locked';
     statusImg.image = 'images/status-lock.png';
+    enabledAllButton(true);
   } else {
     statusText.text = 'Unlocked';
     statusImg.image = 'images/status-unlock.png';
+    enabledAllButton(true);
   }
 };
 

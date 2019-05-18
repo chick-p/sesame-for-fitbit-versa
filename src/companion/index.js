@@ -32,11 +32,11 @@ const exec = function(url, method, data) {
     });
 };
 
-const status = function() {
+const status = function(waitSec) {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(exec(sesame.sesameUrl, 'GET', null));
-    }, 8 * 1000);
+    }, waitSec * 1000);
   });
 };
 
@@ -45,16 +45,18 @@ messaging.peerSocket.onmessage = evt => {
   if (!evt.data) {
     return;
   }
-  if (evt.data.command === 'status') {
+  if (evt.data.command === 'prepare') {
+    status(5);
+  } else if (evt.data.command === 'status') {
     exec(sesame.sesameUrl, 'GET', null);
   } else if (evt.data.command === 'unlock') {
     const data = {command: 'unlock'};
     exec(sesame.sesameUrl, 'POST', data);
-    status();
+    status(8);
   } else if (evt.data.command === 'lock') {
     const data = {command: 'lock'};
     exec(sesame.sesameUrl, 'POST', data);
-    status();
+    status(8);
   }
 };
 
