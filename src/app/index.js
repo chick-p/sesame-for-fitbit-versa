@@ -1,5 +1,6 @@
 import document from 'document';
 import * as messaging from 'messaging';
+import {display} from 'display';
 
 const statusImg = document.getElementById('status-image');
 const statusText = document.getElementById('status-text');
@@ -41,9 +42,6 @@ const enabledAllButton = function(isEnabled) {
 const fetchStatus = function() {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send({command: 'prepare'});
-    statusText.text = 'Preparing...';
-    statusImg.image = 'images/status-prepare.png';
-    enabledAllButton(false);
   }
 };
 
@@ -71,3 +69,8 @@ messaging.peerSocket.onerror = err => {
   // Handle any errors
   console.log('Connection error: ' + err.code + ' - ' + err.message);
 };
+
+statusText.text = 'Preparing...';
+statusImg.image = 'images/status-prepare.png';
+enabledAllButton(false);
+display.autoOff = false;
