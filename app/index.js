@@ -8,25 +8,25 @@ const btnUnlock = document.getElementById('btn-unlock');
 const btnLock = document.getElementById('btn-lock');
 const btnCheck = document.getElementById('btn-check');
 
-btnCheck.onactivate = function(evt) {
+btnCheck.onactivate = () => {
   statusText.text = 'Checking...';
   enabledAllButton(false);
   messaging.peerSocket.send({command: 'status'});
 };
 
-btnUnlock.onactivate = function(evt) {
+btnUnlock.onactivate = () => {
   statusText.text = 'Unlocking...';
   enabledAllButton(false);
   messaging.peerSocket.send({command: 'unlock'});
 };
 
-btnLock.onactivate = function(evt) {
+btnLock.onactivate = () => {
   statusText.text = 'Locking...';
   enabledAllButton(false);
   messaging.peerSocket.send({command: 'lock'});
 };
 
-const enabledAllButton = function(isEnabled) {
+const enabledAllButton = (isEnabled) => {
   if (isEnabled) {
     btnCheck.enable();
     btnLock.enable();
@@ -39,7 +39,7 @@ const enabledAllButton = function(isEnabled) {
 };
 
 // Request number of today's task from the companion
-const fetchStatus = function() {
+const fetchStatus = () => {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send({command: 'prepare'});
   }
@@ -50,7 +50,7 @@ messaging.peerSocket.onopen = () => {
 };
 
 // Listen for messages from the companion
-messaging.peerSocket.onmessage = evt => {
+messaging.peerSocket.onmessage = (evt) => {
   if (evt.data['task_id']) {
     return;
   } else if (evt.data['locked']) {
@@ -65,7 +65,7 @@ messaging.peerSocket.onmessage = evt => {
 };
 
 // Listen for the onerror event
-messaging.peerSocket.onerror = err => {
+messaging.peerSocket.onerror = (err) => {
   // Handle any errors
   console.log('Connection error: ' + err.code + ' - ' + err.message);
 };

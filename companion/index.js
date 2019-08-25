@@ -2,7 +2,7 @@ import * as messaging from 'messaging';
 import * as sesame from './sesame';
 
 // Send the todoist data to the device
-const sendDataToDevice = function(data) {
+const sendDataToDevice = (data) => {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send(data);
   } else {
@@ -11,7 +11,7 @@ const sendDataToDevice = function(data) {
 };
 
 // Execute API
-const exec = function(url, method, data) {
+const exec = (url, method, data) => {
   const options = {};
   options.method = method;
   options.headers = {};
@@ -32,7 +32,7 @@ const exec = function(url, method, data) {
     });
 };
 
-const status = function(waitSec) {
+const status = (waitSec) => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(exec(sesame.sesameUrl, 'GET', null));
@@ -41,7 +41,7 @@ const status = function(waitSec) {
 };
 
 // Listen for messages from the device
-messaging.peerSocket.onmessage = evt => {
+messaging.peerSocket.onmessage = (evt) => {
   if (!evt.data) {
     return;
   }
@@ -61,6 +61,6 @@ messaging.peerSocket.onmessage = evt => {
 };
 
 // Listen for the onerror event
-messaging.peerSocket.onerror = err => {
+messaging.peerSocket.onerror = (err) => {
   console.log('Connection error: ' + err.code + ' - ' + err.message);
 };
