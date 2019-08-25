@@ -1,5 +1,5 @@
 # README
-sesame-app is an application for fitbit versa that to lock and unlock your door with Sesame, smart-lock device.
+This sesame-app is an application for fitbit versa that to lock and unlock your door with Sesame, smart-lock device.
 Please open Fitbit Application on iPhone, set this app configuration.
 
 ## Fitbit Versa screenshots
@@ -7,7 +7,7 @@ Please open Fitbit Application on iPhone, set this app configuration.
 
 ## Usage
 This app is not published to the app store.
-You will need to deploy by using Fitbit Studio and replace Sesame token and Device ID.
+You will need to deploy by using Fitbit Studio or the CLI tools, and need to replace Sesame token and Device ID.
 
 ## How to replace your Sesame auth token and a device ID
 1. Create Sesame auth token, please see [this page](https://docs.candyhouse.co/#authentication).
@@ -19,8 +19,10 @@ You will need to deploy by using Fitbit Studio and replace Sesame token and Devi
    * `{YOUR-SESAME-AUTH-TOKEN}`: Sesame auth token
    * `{YOUR-SESAME-DEVICE-ID}`: Sesame device ID
 
-## Hot to deploy
-Please see [Fitbit Developer - Getting Started](https://dev.fitbit.com/getting-started/)
+## How to deploy
+* Please see.
+  * using Fitbit Studo: [Fitbit Developer - Getting Started](https://dev.fitbit.com/getting-started/)
+  * using the CLI tools: [Command Line Interface Guide](https://dev.fitbit.com/build/guides/command-line-interface/)
 
 ## Licence
 The MIT License.
