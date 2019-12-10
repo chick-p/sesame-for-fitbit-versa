@@ -20,8 +20,8 @@
     "defaultLanguage": "en-US"
   },
   "devDependencies": {
-    "@fitbit/sdk": "^3.1.2",
-    "@fitbit/sdk-cli": "^1.6.3",
+    "@fitbit/sdk": "^4.0.1",
+    "@fitbit/sdk-cli": "^1.7.1",
     "eslint": "^6.2.2"
   },
   "scripts": {
