@@ -14,7 +14,7 @@ You will need to deploy by using Fitbit Studio or the CLI tools, and need to rep
 2. Enable cloud integration for your Sesame Application on smartphone.  
    [Status] > [Change Settings] > [Integration], please see [this page](https://docs.candyhouse.co/#before-you-start). 
 2. Get a sesame device ID using "Get sesame list" API, please see [API spec](https://docs.candyhouse.co/#get-sesame-list).
-3. Open `./companion/sesame.js`
+3. Open `./companion/sesame.ts`
 4. Replace following parameters: 
    * `{YOUR-SESAME-AUTH-TOKEN}`: Sesame auth token
    * `{YOUR-SESAME-DEVICE-ID}`: Sesame device ID
