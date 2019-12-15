@@ -13,18 +13,37 @@ You will need to deploy by using Fitbit Studio or the CLI tools, and need to rep
 
 ## How to replace your Sesame auth token and a device ID
 1. Create Sesame auth token, please see [this page](https://docs.candyhouse.co/#authentication).
-2. Enable cloud integration for your Sesame Application on smartphone.  
-   [Status] > [Change Settings] > [Integration], please see [this page](https://docs.candyhouse.co/#before-you-start). 
-2. Get a sesame device ID using "Get sesame list" API, please see [API spec](https://docs.candyhouse.co/#get-sesame-list).
-3. Open `./companion/sesame.ts`
-4. Replace following parameters: 
+2. Enable cloud integration for your Sesame Application on smartphone(Status > Change Settings > Integration).
+  Please see [this page](https://docs.candyhouse.co/#before-you-start). 
+3. Get a sesame device ID using "Get sesame list" API. Please see [API spec](https://docs.candyhouse.co/#get-sesame-list).
+4. Open `./companion/sesame.ts`
+5. Replace following parameters: 
    * `{YOUR-SESAME-AUTH-TOKEN}`: Sesame auth token
    * `{YOUR-SESAME-DEVICE-ID}`: Sesame device ID
 
 ## How to deploy
-* Please see.
-  * using Fitbit Studo: [Fitbit Developer - Getting Started](https://dev.fitbit.com/getting-started/)
-  * using the CLI tools: [Command Line Interface Guide](https://dev.fitbit.com/build/guides/command-line-interface/)
+You need the Fitbit CLI tools:[Command Line Interface Guide](https://dev.fitbit.com/build/guides/command-line-interface/).
+
+1. Run the following command for install libraries
+    ```shell
+    $ git clone https://github.com/chick-p/sesame-for-fitbit-versa.git
+    $ cd sesame-for-fitbit-versa
+    $ npm install
+    ```
+
+2. Turn on [Developer Bridge] within the Fitbit mobile app (Your device > Developer Menu), and your device (Settings > Developer Bridge).
+
+3. Launch the Fitbit CLI and login your develper account
+    ```shell
+    $ npx fitbit
+    ```
+
+4. Connect your mobile and device, and delopy this application
+    ```shell
+    fitbit$ connect phone
+    fitbit$ connect device
+    fitbit$ bi
+    ```
 
 ## Licence
 The MIT License.
