@@ -2,31 +2,13 @@ import document from 'document';
 import * as messaging from 'messaging';
 import {display} from 'display';
 
-const statusImg = document.getElementById('status-image');
+const statusImg = document.getElementById('status-image') as ImageElement;
 const statusText = document.getElementById('status-text');
-const btnUnlock = document.getElementById('btn-unlock');
-const btnLock = document.getElementById('btn-lock');
-const btnCheck = document.getElementById('btn-check');
+const btnUnlock = document.getElementById('btn-unlock') as ComboButton;
+const btnLock = document.getElementById('btn-lock') as ComboButton;
+const btnCheck = document.getElementById('btn-check') as ComboButton;
 
-btnCheck.onactivate = () => {
-  statusText.text = 'Checking...';
-  enabledAllButton(false);
-  messaging.peerSocket.send({command: 'status'});
-};
-
-btnUnlock.onactivate = () => {
-  statusText.text = 'Unlocking...';
-  enabledAllButton(false);
-  messaging.peerSocket.send({command: 'unlock'});
-};
-
-btnLock.onactivate = () => {
-  statusText.text = 'Locking...';
-  enabledAllButton(false);
-  messaging.peerSocket.send({command: 'lock'});
-};
-
-const enabledAllButton = (isEnabled) => {
+const enabledAllButton = (isEnabled: boolean): void => {
   if (isEnabled) {
     btnCheck.enable();
     btnLock.enable();
@@ -38,39 +20,57 @@ const enabledAllButton = (isEnabled) => {
   }
 };
 
+btnCheck.onactivate = (): void => {
+  statusText.text = 'Checking...';
+  enabledAllButton(false);
+  messaging.peerSocket.send({command: 'status'});
+};
+
+btnUnlock.onactivate = (): void => {
+  statusText.text = 'Unlocking...';
+  enabledAllButton(false);
+  messaging.peerSocket.send({command: 'unlock'});
+};
+
+btnLock.onactivate = (): void => {
+  statusText.text = 'Locking...';
+  enabledAllButton(false);
+  messaging.peerSocket.send({command: 'lock'});
+};
+
 // Request number of today's task from the companion
-const fetchStatus = () => {
+const fetchStatus = (): void => {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send({command: 'prepare'});
   }
 };
 
-messaging.peerSocket.onopen = () => {
+messaging.peerSocket.onopen = (): void => {
   fetchStatus();
 };
 
 // Listen for messages from the companion
-messaging.peerSocket.onmessage = (evt) => {
+messaging.peerSocket.onmessage = (evt): void => {
   if (evt.data['task_id']) {
     return;
   } else if (evt.data['locked']) {
     statusText.text = 'Locked';
-    statusImg.image = 'images/status-lock.png';
+    statusImg.href = 'images/status-lock.png';
     enabledAllButton(true);
   } else {
     statusText.text = 'Unlocked';
-    statusImg.image = 'images/status-unlock.png';
+    statusImg.href = 'images/status-unlock.png';
     enabledAllButton(true);
   }
 };
 
 // Listen for the onerror event
-messaging.peerSocket.onerror = (err) => {
+messaging.peerSocket.onerror = (err): void => {
   // Handle any errors
   console.log('Connection error: ' + err.code + ' - ' + err.message);
 };
 
 statusText.text = 'Preparing...';
-statusImg.image = 'images/status-prepare.png';
+statusImg.href = 'images/status-prepare.png';
 enabledAllButton(false);
 display.autoOff = false;

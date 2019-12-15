@@ -1,8 +1,17 @@
 import * as messaging from 'messaging';
 import * as sesame from './sesame';
 
+type option = {
+  method: string;
+  headers: {
+    'Authorization': string;
+    'Content-Type'?: string;
+  };
+  body?: string;
+}
+
 // Send the todoist data to the device
-const sendDataToDevice = (data) => {
+const sendDataToDevice = (data): void => {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send(data);
   } else {
@@ -11,28 +20,26 @@ const sendDataToDevice = (data) => {
 };
 
 // Execute API
-const exec = (url, method, data) => {
-  const options = {};
-  options.method = method;
-  options.headers = {};
-  options.headers['Authorization'] = sesame.token;
+const exec = (url, method, data): Promise<string> => {
+  const options: option = {
+    method: method,
+    headers: {'Authorization': sesame.token},
+  }
   if (data) {
     options.headers['Content-Type'] = 'application/json';
     options.body = JSON.stringify(data);
   }
-  return fetch(url, options)
-    .then(resp => {
-      resp.json().then(json => {
-        sendDataToDevice(json);
-        return json;
-      });
-    })
-    .catch(err => {
-      console.log('Error fetch sesame: ' + err);
-    });
+  return fetch(url, options).then(resp => {
+    return resp.json();
+  }).then(json => {
+    sendDataToDevice(json);
+    return json;
+  }).catch(err => {
+    console.log('Error fetch sesame: ' + err);
+  });
 };
 
-const status = (waitSec) => {
+const status = (waitSec): Promise<string> => {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(exec(sesame.sesameUrl, 'GET', null));
@@ -41,7 +48,7 @@ const status = (waitSec) => {
 };
 
 // Listen for messages from the device
-messaging.peerSocket.onmessage = (evt) => {
+messaging.peerSocket.onmessage = (evt): void => {
   if (!evt.data) {
     return;
   }
@@ -61,6 +68,6 @@ messaging.peerSocket.onmessage = (evt) => {
 };
 
 // Listen for the onerror event
-messaging.peerSocket.onerror = (err) => {
+messaging.peerSocket.onerror = (err): void => {
   console.log('Connection error: ' + err.code + ' - ' + err.message);
 };
