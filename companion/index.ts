@@ -22,7 +22,7 @@ messaging.peerSocket.onmessage = (evt): void => {
     sesame.fetchSesameStatusWithWait(WAIT_RESPONSE_SEC).then((resp) => {
       sendMessageToDevice(resp);
     }).catch((err) => {
-      console.log(err);
+      console.log(`Fetch status error: ${err}`);
     });
   } else if (command === 'unlock' || command === 'lock') {
     sesame.postControlSesame(command).then(() => {
@@ -30,7 +30,7 @@ messaging.peerSocket.onmessage = (evt): void => {
     }).then((resp) => {
       sendMessageToDevice(resp);
     }).catch((err) => {
-      console.log(err);
+      console.log(`Control sesame err: ${err}`);
     });;
   }
 };
