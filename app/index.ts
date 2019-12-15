@@ -20,6 +20,11 @@ const enabledAllButton = (isEnabled: boolean): void => {
   }
 };
 
+statusText.text = 'Preparing...';
+statusImg.href = 'images/status-prepare.png';
+enabledAllButton(false);
+display.autoOff = false;
+
 btnCheck.onactivate = (): void => {
   statusText.text = 'Checking...';
   enabledAllButton(false);
@@ -39,21 +44,22 @@ btnLock.onactivate = (): void => {
 };
 
 // Request number of today's task from the companion
-const fetchStatus = (): void => {
+const prepareSesame = (): void => {
   if (messaging.peerSocket.readyState === messaging.peerSocket.OPEN) {
     messaging.peerSocket.send({command: 'prepare'});
   }
 };
 
 messaging.peerSocket.onopen = (): void => {
-  fetchStatus();
+  prepareSesame();
 };
 
 // Listen for messages from the companion
 messaging.peerSocket.onmessage = (evt): void => {
-  if (evt.data['task_id']) {
+  console.log(JSON.stringify(evt));
+  if (!evt.data) {
     return;
-  } else if (evt.data['locked']) {
+  } else if (evt.data.isLocked) {
     statusText.text = 'Locked';
     statusImg.href = 'images/status-lock.png';
     enabledAllButton(true);
@@ -66,11 +72,5 @@ messaging.peerSocket.onmessage = (evt): void => {
 
 // Listen for the onerror event
 messaging.peerSocket.onerror = (err): void => {
-  // Handle any errors
-  console.log('Connection error: ' + err.code + ' - ' + err.message);
+  console.log(`Connection error: ${err.code} - ${err.message}`);
 };
-
-statusText.text = 'Preparing...';
-statusImg.href = 'images/status-prepare.png';
-enabledAllButton(false);
-display.autoOff = false;
