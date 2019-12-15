@@ -20,7 +20,6 @@ messaging.peerSocket.onmessage = (evt): void => {
   const command = evt.data.command;
   if (command === 'prepare' || command === 'status') {
     sesame.fetchSesameStatusWithWait(WAIT_RESPONSE_SEC).then((resp) => {
-      console.log(resp);
       sendMessageToDevice(resp);
     }).catch((err) => {
       console.log(err);

@@ -56,7 +56,6 @@ messaging.peerSocket.onopen = (): void => {
 
 // Listen for messages from the companion
 messaging.peerSocket.onmessage = (evt): void => {
-  console.log(JSON.stringify(evt));
   if (!evt.data) {
     return;
   } else if (evt.data.isLocked) {
