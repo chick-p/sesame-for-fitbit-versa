@@ -1,4 +1,6 @@
 # README
+![](https://github.com/chick-p/sesame-for-fitbit-versa/workflows/fitbit-app-build/badge.svg)
+
 This sesame-app is an application for fitbit versa that to lock and unlock your door with Sesame, smart-lock device.
 Please open Fitbit Application on iPhone, set this app configuration.
 
