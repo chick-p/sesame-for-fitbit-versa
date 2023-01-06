@@ -1,0 +1,11 @@
+name: dependabot automerge
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopend
+
+jobs:
+  lint:
+    uses: chick-p/github-actions-shared-workflow/.github/workflows/dependabot-automerge.yml@main
