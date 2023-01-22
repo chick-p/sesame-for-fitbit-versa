@@ -1,12 +1,10 @@
-name: build
+name: Run ESLint
 on:
-  push:
-    - master
   pull_request:
 
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,5 +19,5 @@ jobs:
         env:
           CI: true
 
-      - name: build
-        run: npm run build
+      - name: lint
+        run: npm run lint
