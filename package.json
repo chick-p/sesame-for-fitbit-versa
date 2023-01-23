@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@fitbit/sdk": "^4.3.2",
-    "@fitbit/sdk-cli": "^1.7.1",
+    "@fitbit/sdk-cli": "^1.7.3",
     "@typescript-eslint/eslint-plugin": "^2.11.0",
     "@typescript-eslint/parser": "^2.34.0",
     "eslint": "^6.2.2",
