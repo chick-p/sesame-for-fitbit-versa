@@ -25,7 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^2.11.0",
     "@typescript-eslint/parser": "^2.11.0",
     "eslint": "^6.2.2",
-    "fitbit-sdk-types": "^4.2.2"
+    "fitbit-sdk-types": "^8.0.3"
   },
   "scripts": {
     "build": "fitbit-build",
